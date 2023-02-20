@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PavillionSearch</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="type_input_words">Type in your Words</string>
+    <string name="btn_search_text">Search Me</string>
+
+    <string name="tools_text_login">Tom</string>
+    <string name="tools_text_type">User</string>
+</resources>
