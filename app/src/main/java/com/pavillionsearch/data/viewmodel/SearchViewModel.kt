@@ -13,7 +13,8 @@ class SearchViewModel(val searchRepository: Repository): ViewModel() {
 
 
     val searchNews: MutableLiveData<Resource<SearchResponse>> = MutableLiveData()
-    var searchGithubPage = 10
+    var searchGithubPage = 1
+    var searchNewsResponse: SearchResponse? = null
 
     fun searchNews(searchQuery:String) = viewModelScope.launch {
         searchNews.postValue(Resource.Loading())
@@ -24,7 +25,15 @@ class SearchViewModel(val searchRepository: Repository): ViewModel() {
     private fun handleSearchResponse(response: Response<SearchResponse>) : Resource<SearchResponse>{
         if (response.isSuccessful){
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                searchGithubPage++
+                if(searchNewsResponse == null) {
+                    searchNewsResponse = resultResponse
+                } else {
+                    val oldArticles = searchNewsResponse?.items
+                    val newArticles = resultResponse.items
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())

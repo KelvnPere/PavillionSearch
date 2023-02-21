@@ -7,17 +7,17 @@ import java.io.Serializable
 data class Item(
     @SerializedName("avatar_url")
     @Expose
-    val avatar_url: String,
+    val avatar_url: String?,
     @SerializedName("id")
     @Expose
-    val id: Int,
+    val id: Int?,
     @SerializedName("login")
     @Expose
-    val login: String,
+    val login: String?,
     @SerializedName("type")
     @Expose
-    val type: String,
+    val type: String?,
     @SerializedName("url")
     @Expose
-    val url: String
+    val url: String?
 ): Serializable
