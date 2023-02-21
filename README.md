@@ -11,16 +11,16 @@ The app consists of 3 componets:
 2) A Result Component and lastly
 3) A Detail Component. 
 
+
 <p float="left">
-  <img src=https://user-images.githubusercontent.com/36895007/121485517-29fcaf00-c9c8-11eb-8578-bd18109e9e83.png width = 35%
+  <img src=https://user-images.githubusercontent.com/36895007/220397030-8fef1a0d-ec6a-4b9b-a0b3-6a160ad618b1.png width = 35%
  >
- <img src=https://user-images.githubusercontent.com/36895007/121485530-2c5f0900-c9c8-11eb-9a27-da73caf80d0b.png width= 35%>
+ <img src=https://user-images.githubusercontent.com/36895007/220397071-4c27ae37-3527-4a8d-a46f-37a74eecdbce.png width= 35%>
 </p>
 
 <p float="left">
-<img src=https://user-images.githubusercontent.com/36895007/121485539-2ec16300-c9c8-11eb-997d-ccfd7a32243f.png width= 30%>
-<img src=https://user-images.githubusercontent.com/36895007/121485550-2ff29000-c9c8-11eb-93b9-413c232c1265.png width= 30%>
-<img src=https://user-images.githubusercontent.com/36895007/121485557-3123bd00-c9c8-11eb-89a1-cd26bdb6a061.png width=30%>  
+<img src=https://user-images.githubusercontent.com/36895007/220397122-0cecd142-0379-4292-9ba2-e4c3d3fc7831.png width= 30%>
+<img src=https://user-images.githubusercontent.com/36895007/220397139-37862b30-d6fd-4765-ad75-870a672ae7c1.png width= 30%> 
 </p>
 
 Below is more information about the flow, architecture and libraries used for the project.
@@ -41,10 +41,6 @@ Below is more information about the flow, architecture and libraries used for th
 The user clicks on the app from the launcher which then allows the Android Operating System to execute the application. The 
 user waits for a short time as a progress bar is shown informing the users that some form of data is being loaded and will 
 be displayed soon.  After data has been loaded from the Github Api it then displays some information:
-
-* A list of Comics which all appears to be displayed in an ImageView. 
-
-![Animated GIF-downsized_large](https://user-images.githubusercontent.com/36895007/121493494-cb3b3380-c9cf-11eb-9698-00b311632feb.gif)
 
 # Requirements
 
