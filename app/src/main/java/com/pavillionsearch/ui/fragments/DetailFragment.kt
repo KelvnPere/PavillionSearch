@@ -45,11 +45,13 @@ class DetailFragment : Fragment() {
         val viewModelProviderFactory = SearchViewModelFactory(searchRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
 
+
         val comics = arguments?.getSerializable("item")
         setup(comics as Item)
 
     }
     private fun setup(searchResponse: Item) {
+
         binding.detailLoginTextView.text = searchResponse.login
         binding.detailTypeTextView.text = searchResponse.type
         activity?.let {
