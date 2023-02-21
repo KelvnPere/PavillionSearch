@@ -3,31 +3,31 @@ package com.pavillionsearch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import com.pavillionsearch.data.repository.Repository
+import com.pavillionsearch.data.viewmodel.SearchViewModel
+import com.pavillionsearch.data.viewmodel.SearchViewModelFactory
 
-class BaseActivityFragment : AppCompatActivity() {
+class BaseActivity : AppCompatActivity() {
     lateinit var navController: NavController
 //
-//    lateinit var viewModel: SearchViewModel
+    lateinit var viewModel2: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base_fragment)
 
-
+        val repository = Repository()
+        val viewModelProviderFactory = SearchViewModelFactory(repository)
+        viewModel2 = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
 
       val navHostFragment= supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
         navController = navHostFragment.findNavController()
         setSupportActionBar(findViewById(R.id.toolbar_activity))
-//        val navController= findNavController(androidx.fragment.R.id.fragment_container_view_tag)
-//         val config = AppBarConfiguration(navController.graph)
-
         findViewById<Toolbar>(R.id.toolbar_activity)
         setupActionBarWithNavController(navController)
 

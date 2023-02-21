@@ -14,7 +14,7 @@
         android:theme="@style/Theme.PavillionSearch"
         tools:targetApi="31">
         <activity
-            android:name=".BaseActivityFragment"
+            android:name=".BaseActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

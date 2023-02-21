@@ -10,14 +10,12 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pavillionsearch.BaseActivity
 import com.pavillionsearch.R
-import com.pavillionsearch.data.repository.Repository
 import com.pavillionsearch.data.viewmodel.SearchViewModel
-import com.pavillionsearch.data.viewmodel.SearchViewModelFactory
 import com.pavillionsearch.ui.adapter.HomeAdapter
 
 import com.pavillionsearch.utils.Resource
@@ -35,6 +33,10 @@ class HomeFragment : Fragment() {
         const val TAG1:String = "HomeFragment_TAG"
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,9 +48,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val searchRepository = Repository()
-        val viewModelProviderFactory = SearchViewModelFactory(searchRepository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
+        viewModel = (activity as BaseActivity).viewModel2
+
+//        val searchRepository = Repository()
+//        val viewModelProviderFactory = SearchViewModelFactory(searchRepository)
+//        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
 
 
         progressbarMain = view.findViewById(R.id.paginationProgressBar1)

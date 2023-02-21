@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.pavillionsearch.BaseActivity
 import com.pavillionsearch.R
 import com.pavillionsearch.data.repository.Repository
 import com.pavillionsearch.data.viewmodel.SearchViewModel
@@ -41,9 +42,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val searchRepository = Repository()
-        val viewModelProviderFactory = SearchViewModelFactory(searchRepository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
+        viewModel = (activity as BaseActivity).viewModel2
 
 
         val comics = arguments?.getSerializable("item")
