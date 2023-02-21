@@ -19,7 +19,7 @@ import com.pavillionsearch.data.repository.Repository
 import com.pavillionsearch.data.viewmodel.SearchViewModel
 import com.pavillionsearch.data.viewmodel.SearchViewModelFactory
 import com.pavillionsearch.ui.adapter.HomeAdapter
-import com.pavillionsearch.utils.Constants.Companion.QUERY_PAGE_SIZE
+
 import com.pavillionsearch.utils.Resource
 
 class HomeFragment : Fragment() {
@@ -89,11 +89,6 @@ class HomeFragment : Fragment() {
                     hideProgressBar()
                     response.data?.let { searchResponse ->
                         homeAdapter.differ.submitList(searchResponse.items.toList())
-                        val totalPages = searchResponse.total_count / QUERY_PAGE_SIZE + 2
-                        isLastPage = viewModel.searchGithubPage == totalPages
-                        if (isLastPage){
-                            search_rvView.setPadding(0, 0, 0, 0)
-                        }
                     }
                 }
 
@@ -119,45 +114,12 @@ class HomeFragment : Fragment() {
 
     private fun hideProgressBar() {
         progressbarMain.visibility = View.INVISIBLE
-        isLoading = false
+
     }
 
     private fun showProgressBar() {
         progressbarMain.visibility = View.VISIBLE
-        isLoading = true
-    }
 
-    var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
-
-    val scrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-
-            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-            val visibleItemCount = layoutManager.childCount
-            val totalItemCount = layoutManager.itemCount
-
-            val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
-            val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
-            val isNotAtBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
-            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
-                    isTotalMoreThanVisible && isScrolling
-            if(shouldPaginate) {
-                viewModel.searchNews(inputText.text.toString())
-                isScrolling = false
-            }
-        }
-
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                isScrolling = true
-            }
-        }
     }
 
 
@@ -166,7 +128,6 @@ class HomeFragment : Fragment() {
         search_rvView.apply {
             adapter = homeAdapter
             layoutManager = LinearLayoutManager(activity)
-            addOnScrollListener(this@HomeFragment.scrollListener)
         }
     }
 
