@@ -5,6 +5,8 @@ Welcome 👋
 This is an Android Application that leverages the Github Search User Api for finding various users based on the criteria given. In other words, you input a
 user on Github and click on search and it then brings the result for you to select from.
 
+Api Reference: https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-users
+
 The app consists of 3 componets: 
 
 1) A search component
