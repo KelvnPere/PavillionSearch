@@ -51,7 +51,7 @@ be displayed soon.  After data has been loaded from the Github Api it then displ
 
 # Architecture
 
-Rather than implement everything in a Single Activity or Fragment though its a single view application. There were many 
+Rather than implement everything in a Single Activity or Fragment decided to go with the MVVM Repository Pattern. There were many 
 options to follow, I decided on building the app using the MVVM Design Pattern which helps in separation of concerns.
 
 M = Model
