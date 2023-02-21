@@ -21,6 +21,10 @@ import com.pavillionsearch.ui.adapter.HomeAdapter
 
 import com.pavillionsearch.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -55,19 +59,28 @@ class HomeFragment : Fragment() {
         progressbarMain = view.findViewById(R.id.paginationProgressBar1)
         inputText = view.findViewById(R.id.searchTextView)
         searchbtn = view.findViewById(R.id.btn_search)
+        var job: Job? = null
+
 
         searchbtn.setOnClickListener {
+           // showProgressBar()
+            job?.cancel()
             var textt:Editable = inputText.text
-        if (textt.toString() == "" || textt.toString().isEmpty() || textt.toString().isBlank())    {
-            Toast.makeText(activity,"Kindly type in a text", Toast.LENGTH_SHORT).show()
-        }
-            else{
-            var userInputtedValue:String
-            userInputtedValue = textt.toString()
-            viewModel.searchNews(userInputtedValue)
-            inputText.hideKeyboard()
+            job = MainScope().launch {
+                delay(500L)
+                if (textt.toString() == "" || textt.toString().isEmpty() || textt.toString().isBlank())    {
+                    Toast.makeText(activity,"Kindly type in a text", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    var userInputtedValue:String
+                    userInputtedValue = textt.toString()
+                    viewModel.searchNews(userInputtedValue)
+                  // hideProgressBar()
+                    inputText.hideKeyboard()
 
-        }
+                }
+            }
+
 
         }
 //        viewModel = (activity as MainActivity).viewModelProviderFactory
