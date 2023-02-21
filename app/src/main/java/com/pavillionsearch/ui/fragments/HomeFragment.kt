@@ -14,6 +14,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pavillionsearch.R
@@ -26,7 +27,7 @@ import com.pavillionsearch.utils.Resource
 class HomeFragment : Fragment() {
 
     lateinit var viewModel: SearchViewModel
-    lateinit var newsAdapter: HomeAdapter
+    lateinit var homeAdapter: HomeAdapter
     lateinit var search_rvView: RecyclerView
     lateinit var inputText:EditText
     lateinit var searchbtn:Button
@@ -51,6 +52,7 @@ class HomeFragment : Fragment() {
         val viewModelProviderFactory = SearchViewModelFactory(searchRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
 
+
         progressbarMain = view.findViewById(R.id.paginationProgressBar1)
         inputText = view.findViewById(R.id.searchTextView)
         searchbtn = view.findViewById(R.id.btn_search)
@@ -73,13 +75,22 @@ class HomeFragment : Fragment() {
         search_rvView = view.findViewById(R.id.search_rv)
         //mRecyclerView = findViewById(R.id.recyclerView);
         setupRecyclerView()
+        homeAdapter.setOnItemClickListerner {
+            val bundle = Bundle().apply {
+                putSerializable("item",it)
+            }
+            findNavController().navigate(
+                R.id.action_homeSearchFragment2_to_detailFragment,
+                bundle
+            )
+        }
 
         viewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->
             when(response){
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { searchResponse ->
-                        newsAdapter.differ.submitList(searchResponse.items)
+                        homeAdapter.differ.submitList(searchResponse.items)
                     }
                 }
 
@@ -112,9 +123,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = HomeAdapter()
+        homeAdapter = HomeAdapter()
         search_rvView.apply {
-            adapter = newsAdapter
+            adapter = homeAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }

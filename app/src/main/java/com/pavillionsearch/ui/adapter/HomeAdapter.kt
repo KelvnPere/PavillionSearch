@@ -46,8 +46,6 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.SearchViewHolder>() {
             val typeTextView:TextView = holder.itemView.findViewById(R.id.type_textView)
             loginText.text = search.login
             typeTextView.text = search.type
-//            login_textView.text = search.login
-//            type_textView.text = search.type
             setOnClickListener {
                 onItemClicklisterner?.let { it(search) }
             }

@@ -8,5 +8,18 @@
     <fragment
         android:id="@+id/homeSearchFragment2"
         android:name="com.pavillionsearch.ui.fragments.HomeFragment"
-        android:label="HomeSearchFragment" />
+        android:label="HomeSearchFragment" >
+        <action
+            android:id="@+id/action_homeSearchFragment2_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.pavillionsearch.ui.fragments.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument android:name="item"
+            app:argType="com.pavillionsearch.model.Item"
+            />
+    </fragment>
 </navigation>
