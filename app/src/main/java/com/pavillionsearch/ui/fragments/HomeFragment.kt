@@ -52,13 +52,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = (activity as BaseActivity).viewModel2
-
-//        val searchRepository = Repository()
-//        val viewModelProviderFactory = SearchViewModelFactory(searchRepository)
-//        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
-
-
         progressbarMain = view.findViewById(R.id.paginationProgressBar1)
         inputText = view.findViewById(R.id.searchTextView)
         searchbtn = view.findViewById(R.id.btn_search)
