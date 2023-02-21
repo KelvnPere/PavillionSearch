@@ -9,21 +9,20 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.pavillionsearch.data.repository.Repository
-import com.pavillionsearch.data.viewmodel.SearchViewModel
-import com.pavillionsearch.data.viewmodel.SearchViewModelFactory
+import com.pavillionsearch.ui.viewmodel.SearchViewModel
+import com.pavillionsearch.ui.viewmodel.SearchViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BaseActivity : AppCompatActivity() {
     lateinit var navController: NavController
 //
-    lateinit var viewModel2: SearchViewModel
+//    lateinit var viewModel2: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base_fragment)
 
-        val repository = Repository()
-        val viewModelProviderFactory = SearchViewModelFactory(repository)
-        viewModel2 = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
 
       val navHostFragment= supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
         navController = navHostFragment.findNavController()

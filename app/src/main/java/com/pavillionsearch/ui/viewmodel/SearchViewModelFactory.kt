@@ -1,4 +1,4 @@
-package com.pavillionsearch.data.viewmodel
+package com.pavillionsearch.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

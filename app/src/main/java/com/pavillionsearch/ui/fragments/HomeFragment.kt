@@ -9,20 +9,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pavillionsearch.BaseActivity
 import com.pavillionsearch.R
-import com.pavillionsearch.data.viewmodel.SearchViewModel
+import com.pavillionsearch.ui.viewmodel.SearchViewModel
 import com.pavillionsearch.ui.adapter.HomeAdapter
 
 import com.pavillionsearch.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    lateinit var viewModel: SearchViewModel
+    private val viewModel by viewModels<SearchViewModel>()
+   // lateinit var viewModel: SearchViewModel
     lateinit var homeAdapter: HomeAdapter
     lateinit var search_rvView: RecyclerView
     lateinit var inputText:EditText
@@ -48,7 +52,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as BaseActivity).viewModel2
+//        viewModel = (activity as BaseActivity).viewModel2
 
 //        val searchRepository = Repository()
 //        val viewModelProviderFactory = SearchViewModelFactory(searchRepository)

@@ -1,9 +1,13 @@
 package com.pavillionsearch.data.repository
 
-import com.pavillionsearch.api.RetrofitInstance
+import com.pavillionsearch.data.remote.RetrofitInstance
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import javax.inject.Inject
 
-class Repository {
-
+@ActivityRetainedScoped
+class Repository @Inject constructor(
+    private val retrofitInstance: RetrofitInstance
+) {
     suspend fun searchUsers(searchQuery:String)=
-        RetrofitInstance.api.searchUsers(searchQuery)
+        retrofitInstance.getSearch(searchQuery)
 }

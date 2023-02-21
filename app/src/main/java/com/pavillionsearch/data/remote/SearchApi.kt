@@ -1,4 +1,4 @@
-package com.pavillionsearch.api
+package com.pavillionsearch.data.remote
 
 import com.pavillionsearch.model.SearchResponse
 import retrofit2.Response

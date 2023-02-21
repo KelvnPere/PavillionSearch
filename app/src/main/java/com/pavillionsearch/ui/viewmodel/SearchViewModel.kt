@@ -1,4 +1,4 @@
-package com.pavillionsearch.data.viewmodel
+package com.pavillionsearch.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -6,10 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.pavillionsearch.data.repository.Repository
 import com.pavillionsearch.model.SearchResponse
 import com.pavillionsearch.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class SearchViewModel(val searchRepository: Repository): ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor (private val searchRepository: Repository) : ViewModel() {
 
 
     val searchNews: MutableLiveData<Resource<SearchResponse>> = MutableLiveData()
