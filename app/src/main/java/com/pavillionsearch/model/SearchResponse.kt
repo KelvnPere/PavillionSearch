@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class SearchResponse(
     @SerializedName("items")
     @Expose
-    val items: List<Item>,
+    val items: MutableList<Item>,
 
     @SerializedName("total_count")
     @Expose

@@ -9,5 +9,6 @@ interface SearchApi {
 
     @GET("/search/users")
     suspend fun searchUsers(@Query("q") searchQuery:String,
+                            @Query("per_page")per_page:Int = 10,
                             @Query("page") pageNumber:Int = 1): Response<SearchResponse>
 }
